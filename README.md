@@ -1,16 +1,25 @@
-## Hi there 👋
+# Hi, I'm Diogo
 
-<!--
-**dgenio/dgenio** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+I build open-source infrastructure for reliable AI agents: deterministic tool flows, context control, and safer tool execution.
 
-Here are some ideas to get you started:
+## Start here
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### [ChainWeaver](https://github.com/dgenio/ChainWeaver)
+Compile predictable multi-tool MCP flows into executable graphs and remove unnecessary LLM calls between steps.
+
+## Supporting layers
+
+### [contextweaver](https://github.com/dgenio/contextweaver)
+Budget-aware context compilation and context firewall for tool-heavy AI agents.
+
+### [agent-kernel](https://github.com/dgenio/agent-kernel)
+Capability-based authorization and policy enforcement for agents operating across large tool ecosystems.
+
+## What I care about
+
+- reliable agent systems over “agent vibes”
+- deterministic execution where reasoning is not needed
+- context discipline instead of prompt sprawl
+- safer tool use at scale
+
+Open to feedback, issues, design discussion, and collaboration.
