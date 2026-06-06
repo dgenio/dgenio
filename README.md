@@ -25,7 +25,7 @@ Pick the repo that matches the problem you have:
   enforcement as an embeddable capability/policy layer inside your own runtime).
 - **I want to catch risky AI-generated code before merge** →
   [VibeGuard](https://github.com/dgenio/VibeGuard) is an offline pre-merge gate
-  that flags security risks and AI-generation artifacts in a diff.
+  that flags common security risks and AI-generation artifacts in a diff.
 - **I want to evaluate a decision policy on logged data before rolling it out** →
   [skdr-eval](https://github.com/dgenio/skdr-eval) estimates how a candidate
   recommender, routing, or targeting policy would perform offline, with
@@ -34,7 +34,7 @@ Pick the repo that matches the problem you have:
 ## The repos
 
 - [VibeGuard](https://github.com/dgenio/VibeGuard) — fast, offline pre-merge
-  check that detects security risks and AI-generation artifacts in code diffs.
+  check that flags common security risks and AI-generation artifacts in code diffs.
 - [ChainWeaver](https://github.com/dgenio/ChainWeaver) — compiles repeated,
   deterministic tool sequences into auditable typed flows, removing unnecessary
   LLM calls between steps.
