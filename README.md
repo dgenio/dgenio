@@ -1,25 +1,70 @@
 # Hi, I'm Diogo
 
-I build open-source infrastructure for reliable AI agents: deterministic tool flows, context control, and safer tool execution.
+I build open-source infrastructure for reliable AI agents. The focus is on
+making agent behavior predictable: controlling context, running deterministic
+work without an LLM in the loop, enforcing what tools are allowed to do, and
+checking generated code before it ships. The repos below are independent but
+designed to fit together.
 
 ## Start here
 
-### [ChainWeaver](https://github.com/dgenio/ChainWeaver)
-Compile predictable multi-tool MCP flows into executable graphs and remove unnecessary LLM calls between steps.
+Pick the repo that matches the problem you have:
 
-## Supporting layers
+- **My agent has too many tools or oversized tool outputs** →
+  [contextweaver](https://github.com/dgenio/contextweaver) compiles large tool
+  catalogs into bounded choices and firewalls big tool results to keep prompts
+  within budget.
+- **My agent keeps repeating the same tool sequence** →
+  [ChainWeaver](https://github.com/dgenio/ChainWeaver) compiles those repeated
+  paths into typed, deterministic flows so the LLM is not re-invoked between
+  steps that never change.
+- **I want to control what an agent's tool calls are allowed to do** →
+  [AgentFence](https://github.com/dgenio/AgentFence) (a local policy firewall
+  you run in front of MCP tool calls) or
+  [agent-kernel](https://github.com/dgenio/agent-kernel) (the same kind of
+  enforcement as an embeddable capability/policy layer inside your own runtime).
+- **I want to catch risky AI-generated code before merge** →
+  [VibeGuard](https://github.com/dgenio/VibeGuard) is an offline pre-merge gate
+  that flags common security risks and AI-generation artifacts in a diff.
+- **I want to evaluate a decision policy on logged data before rolling it out** →
+  [skdr-eval](https://github.com/dgenio/skdr-eval) estimates how a candidate
+  recommender, routing, or targeting policy would perform offline, with
+  diagnostics on whether the estimate can be trusted.
 
-### [contextweaver](https://github.com/dgenio/contextweaver)
-Budget-aware context compilation and context firewall for tool-heavy AI agents.
+## The repos
 
-### [agent-kernel](https://github.com/dgenio/agent-kernel)
-Capability-based authorization and policy enforcement for agents operating across large tool ecosystems.
+- [VibeGuard](https://github.com/dgenio/VibeGuard) — fast, offline pre-merge
+  check that flags common security risks and AI-generation artifacts in code
+  diffs.
+- [ChainWeaver](https://github.com/dgenio/ChainWeaver) — compiles repeated,
+  deterministic tool sequences into auditable typed flows, removing unnecessary
+  LLM calls between steps.
+- [contextweaver](https://github.com/dgenio/contextweaver) — context gateway for
+  tool-heavy agents that routes large tool catalogs to bounded choices and
+  trims oversized tool results to control prompt tokens.
+- [AgentFence](https://github.com/dgenio/AgentFence) — local MCP policy firewall
+  that evaluates each tool call and allows, denies, or asks for approval, with
+  no cloud dependency or telemetry.
+- [agent-kernel](https://github.com/dgenio/agent-kernel) — embeddable
+  capability-based authorization layer that issues revocable, principal-scoped
+  tokens and keeps a tamper-evident audit of what ran.
+- [weaver-spec](https://github.com/dgenio/weaver-spec) — language-agnostic
+  contracts and shared vocabulary so these components can interoperate without
+  adopting all of them.
+- [skdr-eval](https://github.com/dgenio/skdr-eval) — offline policy evaluation
+  library (applied ML side project) for estimating policy performance from
+  logged decisions before an A/B test.
 
-## What I care about
+## How they relate
 
-- reliable agent systems over “agent vibes”
-- deterministic execution where reasoning is not needed
-- context discipline instead of prompt sprawl
-- safer tool use at scale
+- **AgentFence and agent-kernel** apply the same idea — deciding whether a tool
+  call is allowed — at different integration points. AgentFence is a standalone
+  local proxy you put in front of MCP tool traffic; agent-kernel is the
+  embeddable library you call from inside your own agent runtime.
+- **contextweaver, ChainWeaver, agent-kernel, and weaver-spec** are meant to
+  compose: ChainWeaver handles deterministic execution, contextweaver controls
+  context and token budget, agent-kernel enforces authorization, and
+  weaver-spec defines the shared contracts that let them work together. Each can
+  also be used on its own.
 
 Open to feedback, issues, design discussion, and collaboration.
