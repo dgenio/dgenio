@@ -34,7 +34,8 @@ Pick the repo that matches the problem you have:
 ## The repos
 
 - [VibeGuard](https://github.com/dgenio/VibeGuard) — fast, offline pre-merge
-  check that flags common security risks and AI-generation artifacts in code diffs.
+  check that flags common security risks and AI-generation artifacts in code
+  diffs.
 - [ChainWeaver](https://github.com/dgenio/ChainWeaver) — compiles repeated,
   deterministic tool sequences into auditable typed flows, removing unnecessary
   LLM calls between steps.
