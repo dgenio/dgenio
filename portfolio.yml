@@ -1,0 +1,101 @@
+version: "1.0"
+meta:
+  owner: dgenio
+  base_url: https://github.com/dgenio
+
+ecosystem:
+  - name: contextweaver
+    role: context gateway
+    problem: My agent has too many tools or oversized tool outputs
+    dev_caption: >
+      compiles large tool catalogs into bounded choices and firewalls
+      big tool results to keep prompts within budget.
+    link: https://github.com/dgenio/contextweaver
+    language: Python
+    maturity: beta
+    request_path: true
+    composes_with:
+      - ChainWeaver
+      - agent-kernel
+      - weaver-spec
+
+  - name: ChainWeaver
+    role: deterministic flow compiler
+    problem: My agent keeps repeating the same tool sequence
+    dev_caption: >
+      compiles repeated, deterministic tool sequences into auditable typed flows,
+      removing unnecessary LLM calls between steps that never change.
+    link: https://github.com/dgenio/ChainWeaver
+    language: Python
+    maturity: beta
+    request_path: true
+    composes_with:
+      - contextweaver
+      - agent-kernel
+      - weaver-spec
+
+  - name: AgentFence
+    role: MCP policy firewall (standalone proxy)
+    problem: I want to control what an agent's tool calls are allowed to do
+    dev_caption: >
+      local MCP policy firewall that evaluates each tool call and allows, denies,
+      or asks for approval, with no cloud dependency or telemetry.
+    link: https://github.com/dgenio/AgentFence
+    language: Go
+    maturity: beta
+    request_path: true
+    related_to:
+      - agent-kernel
+
+  - name: agent-kernel
+    role: embeddable capability authorization
+    problem: I want to control what an agent's tool calls are allowed to do
+    dev_caption: >
+      embeddable capability-based authorization layer that issues revocable,
+      principal-scoped tokens and keeps a tamper-evident audit of what ran.
+    link: https://github.com/dgenio/agent-kernel
+    language: Python
+    maturity: beta
+    request_path: true
+    related_to:
+      - AgentFence
+    composes_with:
+      - contextweaver
+      - ChainWeaver
+      - weaver-spec
+
+  - name: VibeGuard
+    role: offline pre-merge gate
+    problem: I want to catch risky AI-generated code before merge
+    dev_caption: >
+      fast, offline pre-merge check that flags common security risks and
+      AI-generation artifacts in code diffs.
+    link: https://github.com/dgenio/VibeGuard
+    language: Python
+    maturity: beta
+    request_path: true
+
+  - name: skdr-eval
+    role: offline policy evaluator
+    problem: I want to evaluate a decision policy on logged data before rolling it out
+    dev_caption: >
+      offline policy evaluation library (applied ML side project) for estimating
+      policy performance from logged decisions before an A/B test.
+    link: https://github.com/dgenio/skdr-eval
+    language: Python
+    maturity: experimental
+    request_path: true
+
+  - name: weaver-spec
+    role: shared contracts and vocabulary
+    dev_caption: >
+      language-agnostic contracts and shared vocabulary so these components
+      can interoperate without adopting all of them.
+    link: https://github.com/dgenio/weaver-spec
+    language: Python
+    maturity: draft
+    request_path: false
+    composes_with:
+      - contextweaver
+      - ChainWeaver
+      - agent-kernel
