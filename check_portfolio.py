@@ -4,7 +4,7 @@ Consistency checker between README.md and portfolio.yml.
 Checks (bidirectional):
 1. Every repo link in portfolio.yml appears at least once in README.md.
 2. Every GitHub link in README.md (github.com/dgenio/<repo>) is listed in portfolio.yml.
-3. Every repo name in portfolio.yml appears at least once in README.md.
+3. Every repo name in portfolio.yml appears at least once in README.md text.
 
 Exit code 0 if consistent, 1 otherwise (prints mismatches).
 """
@@ -13,69 +13,26 @@ import pathlib
 import re
 import sys
 
-try:
-    import yaml
-except ImportError:
-    yaml = None
-
-
 REPO_ROOT = pathlib.Path(__file__).parent.resolve()
 README_PATH = REPO_ROOT / "README.md"
 PORTFOLIO_PATH = REPO_ROOT / "portfolio.yml"
-LINK_RE = re.compile(r"https://github\.com/dgenio/([^\s/)\]]+)")
-
-
-def _parse_portfolio_native(path: pathlib.Path):
-    """Parse the subset of YAML we actually use, without requiring PyYAML."""
-    text = path.read_text(encoding="utf-8")
-    repos = []
-    current = None
-    for raw_line in text.splitlines():
-        line = raw_line.rstrip()
-        if line.startswith("  - name: "):
-            current = {"name": line.split("name: ", 1)[1].strip()}
-        elif line.startswith("    link: ") and current is not None:
-            current["link"] = line.split("link: ", 1)[1].strip()
-        elif line.startswith("    related_to:") and current is not None:
-            current["related_to"] = []
-        elif line.startswith("    composes_with:") and current is not None:
-            current["composes_with"] = []
-        elif line.startswith("    ") and current is not None and (line.strip().startswith("- ")):
-            val = line.strip().lstrip("- ").strip()
-            if "related_to" in current and current.get("related_to") is not None:
-                current["related_to"].append(val)
-            elif "composes_with" in current and current.get("composes_with") is not None:
-                current["composes_with"].append(val)
-        elif line.startswith("  - ") and current is not None:
-            # new entry
-            repos.append(current)
-            current = {"name": line.split("name: ", 1)[1].strip()}
-    if current is not None:
-        repos.append(current)
-    return repos
-
-
-def parse_portfolio(path: pathlib.Path):
-    if yaml is not None:
-        data = yaml.safe_load(path.read_text(encoding="utf-8"))
-        return [
-            {"name": item["name"], "link": item["link"]}
-            for item in data.get("ecosystem", [])
-        ]
-    return _parse_portfolio_native(path)
+LINK_RE = re.compile(r"https://github\.com/dgenio/(\S+)").findall
+NAME_RE = re.compile(r"^\s+name:\s+(\S+)", re.MULTILINE).findall
+LINES_RE = re.compile(r"^\s+link:\s+(https://github\.com/dgenio/\S+)", re.MULTILINE).findall
 
 
 def main() -> int:
     errors = []
 
     readme = README_PATH.read_text(encoding="utf-8")
-    portfolio = parse_portfolio(PORTFOLIO_PATH)
+    portfolio = PORTFOLIO_PATH.read_text(encoding="utf-8")
 
-    portfolio_names = {entry["name"] for entry in portfolio}
-    portfolio_links = {entry["link"] for entry in portfolio}
+    portfolio_names = set(NAME_RE(portfolio))
+    portfolio_links = set(LINES_RE(portfolio))
 
-    readme_links = set(LINK_RE.findall(readme))
-    # Reconstruct full URLs for comparison
+    readme_links_raw = LINK_RE(readme)
+    # Strip trailing Markdown punctuation so "contextweaver)" -> "contextweaver"
+    readme_links = {name.rstrip(")") for name in readme_links_raw}
     readme_link_urls = {f"https://github.com/dgenio/{name}" for name in readme_links}
 
     # 1. Every portfolio link must appear in README
