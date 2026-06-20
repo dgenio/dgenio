@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Contributing guide
+    url: https://github.com/dgenio/dgenio/blob/main/CONTRIBUTING.md
+    about: How to propose changes to the profile and portfolio map.
+  - name: Report a security issue in a library
+    url: https://github.com/dgenio/dgenio/blob/main/SECURITY.md
+    about: Security reports for the libraries go to their own repositories.

@@ -1,0 +1,42 @@
+name: Fix a repo description
+description: Correct or improve the one-line description of a repo in the portfolio map.
+title: "docs: fix description for <repo>"
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this to correct an inaccurate or outdated one-line description in the
+        profile README / `portfolio.yml`. Please read `STYLE.md` first
+        (neutral tone, no overclaiming, honest maturity).
+  - type: input
+    id: repo
+    attributes:
+      label: Affected repo
+      description: Which repo's description is wrong?
+      placeholder: e.g. contextweaver
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current wording
+      description: Paste the current description as it appears in the README.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed wording
+      description: Your suggested replacement, in the same neutral style.
+    validations:
+      required: true
+  - type: checkboxes
+    id: style
+    attributes:
+      label: Style check
+      options:
+        - label: Wording is neutral and avoids overclaim terms (best, leading, production-ready, enterprise-grade, trending).
+          required: true
+        - label: I verified the wording against the repo's own README/description.
+          required: true

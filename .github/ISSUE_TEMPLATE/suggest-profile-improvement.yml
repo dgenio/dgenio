@@ -1,0 +1,32 @@
+name: Suggest a profile improvement
+description: Suggest a structural, wording, or accessibility improvement to the profile.
+title: "<short summary of the improvement>"
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for broader suggestions (structure, clarity, accessibility,
+        tooling) that do not fit the other two forms. Please keep proposals
+        consistent with `STYLE.md`.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What could be better?
+      description: Describe the current state and why it is a problem.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What you would change, and roughly how.
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+      description: Optional. Links, examples, or screenshots (with alt text).
+    validations:
+      required: false
