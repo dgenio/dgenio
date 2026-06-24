@@ -1,0 +1,60 @@
+name: Add a repo to the map
+description: Propose adding a repository that is missing from the portfolio map.
+title: "docs: add <repo> to the portfolio map"
+labels: ["documentation", "ecosystem"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this to add a repo to the profile. New entries must be added to both
+        `portfolio.yml` and `README.md` so the consistency check passes
+        (`python check_portfolio.py`).
+  - type: input
+    id: repo
+    attributes:
+      label: Repo name
+      placeholder: e.g. weaver-spec
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Repo URL
+      placeholder: https://github.com/dgenio/<repo>
+    validations:
+      required: true
+  - type: input
+    id: problem
+    attributes:
+      label: Problem it solves (for the "Start here" chooser)
+      description: Phrased as a problem the reader has.
+      placeholder: e.g. I want these components to interoperate without adopting all of them
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: One-line description
+      description: A neutral, honest one-liner for "The repos" section.
+    validations:
+      required: true
+  - type: dropdown
+    id: maturity
+    attributes:
+      label: Maturity
+      options:
+        - draft
+        - experimental
+        - beta
+        - stable
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: The repository exists and is public.
+          required: true
+        - label: Wording is neutral and avoids overclaim terms.
+          required: true

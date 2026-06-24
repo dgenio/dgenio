@@ -1,0 +1,5 @@
+# Code owners for the profile repository.
+# The owner is automatically requested for review on any pull request.
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+*       @dgenio
