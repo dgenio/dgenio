@@ -6,6 +6,8 @@ work without an LLM in the loop, enforcing what tools are allowed to do, and
 checking generated code before it ships. The repos below are independent but
 designed to fit together.
 
+> 📖 **New here? Read the overview** — [The Weaver Stack: One Contract Layer for Safe LLM Agents](https://pub.towardsai.net/the-weaver-stack-one-contract-layer-for-safe-llm-agents-7f733cad5eac) explains why these repos exist and how they compose.
+
 ## Start here
 
 Pick the repo that matches the problem you have:
