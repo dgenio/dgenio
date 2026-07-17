@@ -1,5 +1,8 @@
 # Hi, I'm Diogo
 
+**Open-source building blocks for reliable, predictable AI agents — context
+control, deterministic execution, tool-call policy, and pre-merge code checks.**
+
 I build open-source infrastructure for reliable AI agents. The focus is on
 making agent behavior predictable: controlling context, running deterministic
 work without an LLM in the loop, enforcing what tools are allowed to do, and
@@ -30,10 +33,15 @@ Pick the repo that matches the problem you have:
 - **I want to catch risky AI-generated code before merge** →
   [VibeGuard](https://github.com/dgenio/VibeGuard) is an offline pre-merge gate
   that flags common security risks and AI-generation artifacts in a diff.
+- **I want these components to interoperate without adopting all of them** →
+  [weaver-spec](https://github.com/dgenio/weaver-spec) defines the
+  language-agnostic contracts and shared vocabulary that let the pieces above
+  compose while staying independently usable.
 - **I want to evaluate a decision policy on logged data before rolling it out** →
   [skdr-eval](https://github.com/dgenio/skdr-eval) estimates how a candidate
   recommender, routing, or targeting policy would perform offline, with
-  diagnostics on whether the estimate can be trusted.
+  diagnostics on whether the estimate can be trusted (an offline applied-ML
+  project, separate from the agent-runtime libraries above).
 
 ## The repos
 
@@ -61,6 +69,10 @@ Pick the repo that matches the problem you have:
 
 ## How they relate
 
+At a glance, the request path composes as: context control (contextweaver) →
+deterministic execution (ChainWeaver) → authorization (agent-kernel), all on
+shared contracts (weaver-spec). VibeGuard and skdr-eval sit off this path.
+
 - **AgentFence and agent-kernel** apply the same idea — deciding whether a tool
   call is allowed — at different integration points. AgentFence is a standalone
   local proxy you put in front of MCP tool traffic; agent-kernel is the
@@ -71,4 +83,11 @@ Pick the repo that matches the problem you have:
   weaver-spec defines the shared contracts that let them work together. Each can
   also be used on its own.
 
-Open to feedback, issues, design discussion, and collaboration.
+## Contact
+
+Open to feedback, design discussion, and collaboration. Concrete ways to start:
+
+- **Found a bug or have a feature request for a specific library?** Open an
+  issue on that repo (linked above).
+- **Have a question, idea, or want to discuss the ecosystem as a whole?** Open
+  an issue on this profile repo.

@@ -15,6 +15,13 @@ and dates use commit dates (YYYY-MM-DD).
   `AGENTS.md`, `STYLE.md`, `SECURITY.md`, `.github/CODEOWNERS`,
   GitHub issue templates, `docs/discoverability.md`, and this changelog.
 
+### Changed
+
+- Landing-experience pass on the README: added a one-line portfolio tagline,
+  a `weaver-spec` entry in the "Start here" chooser, a clarifier marking
+  `skdr-eval` as a separate applied-ML project, an at-a-glance request-path
+  composition line in "How they relate", and an explicit "Contact" block.
+
 ## 2026-06-17
 
 ### Added
