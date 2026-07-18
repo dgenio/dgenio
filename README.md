@@ -35,8 +35,8 @@ Pick the repo that matches the problem you have:
   that flags common security risks and AI-generation artifacts in a diff.
 - **I want these components to interoperate without adopting all of them** →
   [weaver-spec](https://github.com/dgenio/weaver-spec) defines the
-  language-agnostic contracts and shared vocabulary that let the pieces above
-  compose while staying independently usable.
+  language-agnostic contracts and shared vocabulary that contextweaver,
+  ChainWeaver, and agent-kernel build on, so each stays independently usable.
 - **I want to evaluate a decision policy on logged data before rolling it out** →
   [skdr-eval](https://github.com/dgenio/skdr-eval) estimates how a candidate
   recommender, routing, or targeting policy would perform offline, with
