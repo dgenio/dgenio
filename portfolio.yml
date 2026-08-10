@@ -73,21 +73,35 @@ ecosystem:
     link: https://github.com/dgenio/VibeGuard
     language: Python
     maturity: beta
-    request_path: true
+    request_path: false
 
-  - name: skdr-eval
-    role: offline policy evaluator
-    problem: I want to evaluate a decision policy on logged data before rolling it out
+  - name: lessonweaver
+    role: reviewed operational learning
+    problem: I want to turn repeated trace evidence into reviewed operational lessons
     dev_caption: >
-      offline policy evaluation library (applied ML side project) for estimating
-      policy performance from logged decisions before an A/B test.
-    link: https://github.com/dgenio/skdr-eval
+      detects recurring patterns in agent traces and turns candidates into
+      human-reviewed operational lessons.
+    link: https://github.com/dgenio/lessonweaver
     language: Python
     maturity: experimental
-    request_path: true
+    request_path: false
+
+  - name: intentflow
+    role: verifiable action assurance
+    problem: I want action-assurance artifacts that can be verified independently
+    dev_caption: >
+      experimental implementation-neutral assurance plans, receipts, and
+      verification for high-risk actions.
+    link: https://github.com/dgenio/intentflow
+    language: Python
+    maturity: experimental
+    request_path: false
+    related_to:
+      - AgentFence
 
   - name: weaver-spec
     role: shared contracts and vocabulary
+    problem: I want these components to interoperate without adopting all of them
     dev_caption: >
       language-agnostic contracts and shared vocabulary so these components
       can interoperate without adopting all of them.
@@ -99,3 +113,44 @@ ecosystem:
       - contextweaver
       - ChainWeaver
       - agent-kernel
+
+  - name: skdr-eval
+    role: offline policy evaluator
+    problem: I want to evaluate a decision policy on logged data before rolling it out
+    dev_caption: >
+      experimental offline policy evaluation library for estimating policy
+      performance from logged decisions before an A/B test.
+    link: https://github.com/dgenio/skdr-eval
+    language: Python
+    maturity: experimental
+    request_path: false
+
+  - name: agent-routing-eval-lab
+    role: routing evaluation reference lab
+    problem: I want a reproducible lab for comparing agent-routing policies
+    dev_caption: >
+      reference evaluation harness for routing experiments and rollout evidence.
+    link: https://github.com/dgenio/agent-routing-eval-lab
+    language: Python
+    maturity: experimental
+    request_path: false
+
+  - name: mcp-agent-security-dojo
+    role: educational agent-security lab
+    problem: I want hands-on examples of agent-security failures and controls
+    dev_caption: >
+      educational security lab with vulnerable and governed agent scenarios.
+    link: https://github.com/dgenio/mcp-agent-security-dojo
+    language: Python
+    maturity: experimental
+    request_path: false
+
+  - name: enterprise-agent-control-plane
+    role: agent-governance reference architecture
+    problem: I want to see the governance pieces assembled into one reference system
+    dev_caption: >
+      reference architecture for an auditable agent control plane.
+    link: https://github.com/dgenio/enterprise-agent-control-plane
+    language: Python
+    maturity: experimental
+    request_path: false

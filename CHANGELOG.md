@@ -14,13 +14,19 @@ and dates use commit dates (YYYY-MM-DD).
 - Repository governance and contributor documentation: `CONTRIBUTING.md`,
   `AGENTS.md`, `STYLE.md`, `SECURITY.md`, `.github/CODEOWNERS`,
   GitHub issue templates, `docs/discoverability.md`, and this changelog.
+- Complete portfolio routing for `lessonweaver`, `intentflow`,
+  `agent-routing-eval-lab`, `mcp-agent-security-dojo`, and
+  `enterprise-agent-control-plane`, with experiments/labs separated from
+  reusable libraries and tools.
 
 ### Changed
 
 - Landing-experience pass on the README: added a one-line portfolio tagline,
-  a `weaver-spec` entry in the "Start here" chooser, a clarifier marking
-  `skdr-eval` as a separate applied-ML project, an at-a-glance request-path
-  composition line in "How they relate", and an explicit "Contact" block.
+  a problem-first chooser, an at-a-glance portfolio table, a clearer maturity
+  boundary between reusable tools and reference material, a request-path
+  composition summary, and an explicit Contact block.
+- `portfolio.yml` now lists all maintained projects represented by the profile
+  README rather than only the original Weaver Stack subset.
 
 ## 2026-06-17
 
