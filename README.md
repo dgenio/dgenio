@@ -15,8 +15,9 @@ designed to fit together.
 
 ## Start here
 
-Pick the repo that matches the problem you have. I label labs and experiments
-explicitly so you can distinguish reusable tools from reference material.
+Pick the repo that matches the problem you have. I label labs, experiments,
+and active incubations explicitly so you can distinguish reusable tools from
+research hypotheses and reference material.
 
 ### Libraries and tools
 
@@ -35,12 +36,20 @@ explicitly so you can distinguish reusable tools from reference material.
 - **I want to catch risky AI-generated code before merge** →
   [VibeGuard](https://github.com/dgenio/VibeGuard) is an offline pre-merge gate
   for security risks and AI-generation artifacts in a diff.
-- **I want to turn repeated trace evidence into reviewed operational lessons** →
-  [lessonweaver](https://github.com/dgenio/lessonweaver) detects recurring
-  patterns in agent traces and turns candidates into human-reviewed lessons.
-- **I want action-assurance artifacts that can be verified independently** →
-  [intentflow](https://github.com/dgenio/intentflow) is an experimental project
-  for implementation-neutral assurance plans, receipts, and verification.
+- **My coding agent keeps repeating a failure already corrected in review** →
+  [lessonweaver](https://github.com/dgenio/lessonweaver) is an **incubating
+  product hypothesis**: it is testing whether evidence-backed change selection
+  adds value beyond an equally capable human choosing the smallest intervention
+  (nothing, an instruction, a Skill, or deterministic enforcement). Its public
+  experiment/kill criteria are versioned in the repo; it should not yet be read
+  as proven “self-improving agents.”
+- **I want portable assurance for a high-risk agent action** →
+  [intentflow](https://github.com/dgenio/intentflow) is an **incubating research
+  hypothesis**. v0 is a legacy/experimental reference runtime; v1 first tests
+  whether a minimal action-assurance contract adds material value beyond a
+  strong policy + exact request/approval/receipt + signed-attestation baseline.
+  If that comparison fails, the protocol/language direction is explicitly meant
+  to shrink or stop.
 - **I want these components to interoperate without adopting all of them** →
   [weaver-spec](https://github.com/dgenio/weaver-spec) defines the
   language-agnostic contracts and shared vocabulary that contextweaver,
@@ -76,20 +85,39 @@ dependencies:
 | [AgentFence](https://github.com/dgenio/AgentFence) | CLI / proxy | MCP tool-call policy enforcement |
 | [agent-kernel](https://github.com/dgenio/agent-kernel) | Library | Embedded capabilities and authorization |
 | [VibeGuard](https://github.com/dgenio/VibeGuard) | CLI / CI gate | Pre-merge AI-code checks |
-| [lessonweaver](https://github.com/dgenio/lessonweaver) | Experimental library | Reviewed operational learning |
-| [intentflow](https://github.com/dgenio/intentflow) | Experimental library | Verifiable action assurance |
+| [lessonweaver](https://github.com/dgenio/lessonweaver) | **Incubating product** | Evidence-backed intervention selection for recurring coding-agent failures |
+| [intentflow](https://github.com/dgenio/intentflow) | **Incubating research / legacy v0** | Test portable action-assurance contracts against strong baselines |
 | [weaver-spec](https://github.com/dgenio/weaver-spec) | Contract spec | Shared interoperability contracts |
 | [skdr-eval](https://github.com/dgenio/skdr-eval) | Experimental library | Offline policy evaluation |
 | [agent-routing-eval-lab](https://github.com/dgenio/agent-routing-eval-lab) | Reference lab | Routing evaluation |
 | [mcp-agent-security-dojo](https://github.com/dgenio/mcp-agent-security-dojo) | Educational lab | Agent-security exercises |
 | [enterprise-agent-control-plane](https://github.com/dgenio/enterprise-agent-control-plane) | Reference architecture | End-to-end governance patterns |
 
+## Incubation discipline
+
+Two repos currently have explicit falsification gates rather than ordinary
+feature roadmaps:
+
+- **LessonWeaver:** pilot → preregistered confirmatory experiment → ablation →
+  external replication. It graduates only if behavior, safety, product-value,
+  complexity, and replication gates all pass against a fair human baseline.
+- **IntentFlow v1:** strong existing-policy/attestation baseline → adversarial
+  corpus → category kill gate. Second verifier, substantial formal-method work,
+  and a new `.iflow` frontend remain blocked until a material assurance gap is
+  demonstrated.
+
+A smaller product, an existing-standards profile, or an archived hypothesis is
+a successful incubation outcome when that is what the evidence supports.
+Implementation throughput and GitHub stars are not substitutes for those gates.
+
 ## How they relate
 
 At a glance, the request path composes as: context control (contextweaver) →
 deterministic execution (ChainWeaver) → authorization (agent-kernel), on shared
 contracts (weaver-spec). AgentFence can enforce at the external MCP boundary.
-VibeGuard, lessonweaver, skdr-eval, and the labs sit around that core path.
+VibeGuard, LessonWeaver, skdr-eval, and the labs sit around that core path.
+IntentFlow's future role is deliberately unresolved until its action-assurance
+category experiment passes.
 
 - **AgentFence and agent-kernel** apply the same idea — deciding whether a tool
   call is allowed — at different integration points. AgentFence is a standalone
