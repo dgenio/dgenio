@@ -13,6 +13,11 @@ designed to fit together.
 > [The Weaver Stack: One Contract Layer for Safe LLM Agents](https://pub.towardsai.net/the-weaver-stack-one-contract-layer-for-safe-llm-agents-7f733cad5eac)
 > explains why these repos exist and how they compose.
 
+## Selected writing
+
+- **[Your Agent Passed the Security Test. What Did You Actually Prove?](writing/production-ai/what-did-your-agent-security-test-prove.md)** — what tool authorization tests demonstrate, what remains unproven, and a six-field review worksheet. Includes public, reproducible AgentFence/VeriCordon examples.
+- [The Weaver Stack: One Contract Layer for Safe LLM Agents](https://pub.towardsai.net/the-weaver-stack-one-contract-layer-for-safe-llm-agents-7f733cad5eac) — earlier architecture overview.
+
 ## Start here
 
 Pick the repo that matches the problem you have. I label labs, experiments,
